@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { Post } from './posts/posts.entity';
 import { PostsModule } from './posts/posts.module';
+import { CommentsModule } from './comments/comments.module';
+import { Comment } from './comments/comments.entity';
 
 @Module({
   imports: [
@@ -16,9 +18,10 @@ import { PostsModule } from './posts/posts.module';
       database: process.env.DB_NAME || 'blog_db',
       autoLoadEntities: true,
       synchronize: true,
-      entities: [Post],
+      entities: [Post, Comment],
     }),
     PostsModule,
+    CommentsModule,
   ],
 })
 export class AppModule {}
